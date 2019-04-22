@@ -1,7 +1,7 @@
 # TODO for the Project
 
-- [ ] Step One: Create a WebPack and Babel config for compiling a React app (basics model)
-- [ ] Step Two: Create ESLint config (abstract)
+- [x] Step One: Create a WebPack and Babel config for compiling a React app (basics model)
+- [x] Step Two: Create ESLint config (abstract)
 - [ ] Create rules for CSS pre-processors (SASS, **SCSS**, LESS)
 - [ ] Create rules for working with media-files (**pictures**, audio, video, etc)
 - [ ] Setting dev-server for comfortable development (with hot-loading)
