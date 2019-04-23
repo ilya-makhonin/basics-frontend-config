@@ -12,9 +12,18 @@ const webPackConfigure = {
         filename: 'main.js',
         path: _path_.distBasePath
     },
-    resolve: {
-        alias
+    module: {
+        rules: [
+            // Place for rules of compiling...
+        ]
     },
+    resolve: {
+        alias,
+        plugins: [
+            // Place for app' plugins
+        ]
+    },
+    devtool: "source-map",
     devServer: devServerConfig
 };
 
