@@ -6,6 +6,4 @@ const aliasList = {
     // Some path to modules and components
 };
 
-module.exports = {
-    aliasList
-};
+module.exports = aliasList;
