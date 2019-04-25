@@ -4,7 +4,8 @@
   "description": "Basics config for creating React.js application",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --config configuration/webpack.config.js"
   },
   "repository": {
     "type": "git",
@@ -29,7 +30,23 @@
   },
   "homepage": "https://github.com/ilya-makhonin/basics-frontend-config#readme",
   "devDependencies": {
+    "babel-loader": "^8.0.5",
+    "css-loader": "^2.1.1",
+    "eslint": "^5.16.0",
+    "eslint-loader": "^2.1.2",
+    "file-loader": "^3.0.1",
+    "less": "^3.9.0",
+    "less-loader": "^4.1.0",
+    "react-hot-loader": "^4.8.4",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1",
+    "url-loader": "^1.1.2",
     "webpack": "^4.30.0",
+    "webpack-cli": "^3.3.1",
     "webpack-dev-server": "^3.3.1"
+  },
+  "dependencies": {
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
   }
 }
