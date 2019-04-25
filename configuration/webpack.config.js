@@ -9,7 +9,7 @@ const webPackConfigure = {
     mode: 'development',
     entry: _path_.mainEntryPointPath,
     output: {
-        filename: 'main.js',
+        filename: '[name].[hash].build.js',
         path: _path_.distBasePath
     },
     module: {
@@ -23,6 +23,9 @@ const webPackConfigure = {
             // Place for app' plugins
         ]
     },
+    plugins: [
+        new webpack.HotModuleReplacementPlugin()
+    ],
     devtool: "source-map",
     devServer: devServerConfig
 };
