@@ -8,6 +8,7 @@ const mainAppFilePath = path.join(srcBasePath, 'App.js');
 const appCataloguePath = path.join(srcBasePath, 'app');
 
 const distBasePath = path.resolve(__dirname, '..', 'dist');
+const distImagesPath = path.resolve(distBasePath, 'images');
 
 
 module.exports = {
@@ -16,5 +17,6 @@ module.exports = {
     mainEntryPointPath,
     mainAppFilePath,
     appCataloguePath,
-    distBasePath
+    distBasePath,
+    distImagesPath
 };
