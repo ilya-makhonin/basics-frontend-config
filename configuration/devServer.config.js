@@ -2,8 +2,11 @@ const path = require('path');
 
 
 module.exports = {
-    // Basics setting for dev server
-    contentBase: path.join(__dirname, 'dist'),
+    contentBase: path.resolve(__dirname, 'dist'),
     compress: true,
-    port: 9000
+    host: '0.0.0.0',
+    port: 9000,
+    historyApiFallback: true,
+    inline: true,
+    hot: true
 };
