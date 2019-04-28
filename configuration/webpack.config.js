@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const devServerConfig = require('./devServer.config');
 const alias = require('./alias');
 const _path_ = require('./__path');
@@ -14,6 +15,17 @@ const webPackConfigure = {
     },
     module: {
         rules: [
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                enforce: 'pre',
+                use: 'eslint-loader'
+            },
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: 'babel-loader'
+            },
             {
                 test: /\.css$/,
                 use: [
@@ -30,11 +42,12 @@ const webPackConfigure = {
             },
             {
                 test: /\.scss$/,
+                exclude: /node_modules/,
                 use: [
                     'style-loader',
                     'css-loader',
                     {
-                        loader: "sass-loader",
+                        loader: 'sass-loader',
                         options: {
                             sourceMap: true
                         }
@@ -43,6 +56,7 @@ const webPackConfigure = {
             },
             {
                 test: /\.less$/,
+                exclude: /node_modules/,
                 use: [
                     'style-loader',
                     'css-loader',
@@ -60,7 +74,7 @@ const webPackConfigure = {
                     {
                         loader: 'url-loader',
                         options: {
-                            limit: 8192
+                            limit: 10000
                         }
                     }
                 ]
@@ -77,7 +91,8 @@ const webPackConfigure = {
                                 }
                                 return '[name][hash].[ext]';
                             },
-                            outputPath: _path_.distImagesPath
+                            outputPath: _path_.distImagesPath,
+                            publicPath: _path_.srcImagesPath
                         },
                     },
                 ],
@@ -91,6 +106,12 @@ const webPackConfigure = {
         ]
     },
     plugins: [
+        new HtmlWebpackPlugin({
+            template: path.join(__dirname, './src/assets/index.html'),
+            filename: 'index.html',
+            path: outputPath
+        }),
+        new webpack.NamedModulesPlugin(),
         new webpack.HotModuleReplacementPlugin()
     ],
     devtool: "source-map",
