@@ -6,6 +6,10 @@ const srcBasePath = path.resolve(__dirname, '..', 'src');
 const publicBasePath = path.resolve(__dirname, '..', 'public');
 const distBasePath = path.resolve(__dirname, '..', 'dist');
 
+const publicHTMLPath = path.join(publicBasePath, 'index.html');
+const publicFaviconPath = path.join(publicBasePath, 'favicon.ico');
+const publicManifestPath = path.join(publicBasePath, 'manifest.json');
+
 // The paths to main files of a React.js application
 const mainEntryPointPath = path.join(srcBasePath, 'index.js');
 const mainAppFilePath = path.join(srcBasePath, 'App.js');
@@ -13,14 +17,10 @@ const mainAppFilePath = path.join(srcBasePath, 'App.js');
 // The paths to main folders of a React.js application
 const appCataloguePath = path.join(srcBasePath, 'app');
 const srcImagesPath = path.join(appCataloguePath, 'assets', 'images');
-/**
- * app
- *   components
- *   containers
- *   styles
- *   and etc
- *   ...
- */
+const srcStylesPath = path.join(appCataloguePath, 'assets', 'styles');
+const srcCSSPath = path.join(srcStylesPath, 'css');
+const srcSCSSPath = path.join(srcStylesPath, 'scss');
+const srcLESSPath = path.join(srcStylesPath, 'less');
 
 // The paths to dist main folders
 const distImagesPath = path.resolve(distBasePath, 'images');
@@ -38,10 +38,17 @@ const publicGetPath = (...pathFor) => path.join(publicBasePath, ...pathFor);
 module.exports = {
     srcBasePath,
     publicBasePath,
+    publicHTMLPath,
+    publicFaviconPath,
+    publicManifestPath,
     mainEntryPointPath,
     mainAppFilePath,
     appCataloguePath,
     srcImagesPath,
+    srcStylesPath,
+    srcCSSPath,
+    srcSCSSPath,
+    srcLESSPath,
     distBasePath,
     distImagesPath
 };
