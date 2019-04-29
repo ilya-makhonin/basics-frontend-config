@@ -19,12 +19,14 @@ const webPackConfigure = {
                 test: /\.js$/,
                 exclude: /node_modules/,
                 enforce: 'pre',
-                use: 'eslint-loader'
+                use: 'eslint-loader',
+                // include: [ _path_.srcBasePath ]
             },
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
-                use: 'babel-loader'
+                use: 'babel-loader',
+                include: [ _path_.srcBasePath ]
             },
             {
                 test: /\.css$/,
@@ -38,7 +40,8 @@ const webPackConfigure = {
                             sourceMap: true,
                         },
                     }
-                ]
+                ],
+                include: [ _path_.srcCSSPath ]
             },
             {
                 test: /\.scss$/,
@@ -52,7 +55,8 @@ const webPackConfigure = {
                             sourceMap: true
                         }
                     }
-                ]
+                ],
+                include: [ _path_.srcSCSSPath ]
             },
             {
                 test: /\.less$/,
@@ -66,7 +70,8 @@ const webPackConfigure = {
                             sourceMap: true
                         }
                     }
-                ]
+                ],
+                include: [ _path_.srcLESSPath ]
             },
             {
                 test: /\.(png|jpe?g|gif|svg|eot|ttf|woff|woff2)$/i,
@@ -79,24 +84,24 @@ const webPackConfigure = {
                     }
                 ]
             },
-            {
-                test: /\.(png|jpe?g|gif|svg|eot|ttf|woff|woff2)$/,
-                use: [
-                    {
-                        loader: 'file-loader',
-                        options: {
-                            name(file) {
-                                if (process.env.NODE_ENV === 'development') {
-                                    return '[name].[ext]';
-                                }
-                                return '[name][hash].[ext]';
-                            },
-                            outputPath: _path_.distImagesPath,
-                            publicPath: _path_.srcImagesPath
-                        },
-                    },
-                ],
-            }
+            // {
+            //     test: /\.(png|jpe?g|gif|svg|eot|ttf|woff|woff2)$/,
+            //     use: [
+            //         {
+            //             loader: 'file-loader',
+            //             options: {
+            //                 name(file) {
+            //                     if (process.env.NODE_ENV === 'development') {
+            //                         return '[name].[ext]';
+            //                     }
+            //                     return '[name][hash].[ext]';
+            //                 },
+            //                 outputPath: _path_.distImagesPath,
+            //                 publicPath: _path_.srcImagesPath
+            //             },
+            //         },
+            //     ],
+            // }
         ]
     },
     resolve: {
@@ -107,9 +112,10 @@ const webPackConfigure = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: path.join(__dirname, './src/assets/index.html'),
+            template: _path_.publicHTMLPath,
             filename: 'index.html',
-            path: outputPath
+            path: _path_.distBasePath,
+            favicon: _path_.publicFaviconPath
         }),
         new webpack.NamedModulesPlugin(),
         new webpack.HotModuleReplacementPlugin()
