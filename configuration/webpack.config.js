@@ -1,13 +1,17 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const InterpolateHtmlPlugin = require('interpolate-html-plugin');
 const devServerConfig = require('./devServer.config');
+const babelConfig = require('./babel.config')();
 const alias = require('./alias');
 const _path_ = require('./__path');
 
 
 const webPackConfigure = {
     mode: 'development',
+    devtool: "source-map",
+    devServer: devServerConfig,
     entry: _path_.mainEntryPointPath,
     output: {
         filename: '[name][hash].build.js',
@@ -17,19 +21,21 @@ const webPackConfigure = {
         rules: [
             {
                 test: /\.js$/,
-                exclude: /node_modules/,
+                exclude: /(node_modules|bower_components)/,
                 enforce: 'pre',
                 use: 'eslint-loader',
-                // include: [ _path_.srcBasePath ]
+                include: [ _path_.srcBasePath ]
             },
             {
                 test: /\.js$/,
-                exclude: /node_modules/,
-                use: 'babel-loader',
+                exclude: /(node_modules|bower_components)/,
+                loader: 'babel-loader',
+                options: babelConfig,
                 include: [ _path_.srcBasePath ]
             },
             {
                 test: /\.css$/,
+                exclude: /(node_modules|bower_components)/,
                 use: [
                     'style-loader',
                     {
@@ -45,7 +51,7 @@ const webPackConfigure = {
             },
             {
                 test: /\.scss$/,
-                exclude: /node_modules/,
+                exclude: /(node_modules|bower_components)/,
                 use: [
                     'style-loader',
                     'css-loader',
@@ -60,7 +66,7 @@ const webPackConfigure = {
             },
             {
                 test: /\.less$/,
-                exclude: /node_modules/,
+                exclude: /(node_modules|bower_components)/,
                 use: [
                     'style-loader',
                     'css-loader',
@@ -74,7 +80,7 @@ const webPackConfigure = {
                 include: [ _path_.srcLESSPath ]
             },
             {
-                test: /\.(png|jpe?g|gif|svg|eot|ttf|woff|woff2)$/i,
+                test: /\.(png|jpe?g|gif|svg|eot|ttf|woff|woff2)$/,
                 use: [
                     {
                         loader: 'url-loader',
@@ -84,44 +90,58 @@ const webPackConfigure = {
                     }
                 ]
             },
-            // {
-            //     test: /\.(png|jpe?g|gif|svg|eot|ttf|woff|woff2)$/,
-            //     use: [
-            //         {
-            //             loader: 'file-loader',
-            //             options: {
-            //                 name(file) {
-            //                     if (process.env.NODE_ENV === 'development') {
-            //                         return '[name].[ext]';
-            //                     }
-            //                     return '[name][hash].[ext]';
-            //                 },
-            //                 outputPath: _path_.distImagesPath,
-            //                 publicPath: _path_.srcImagesPath
-            //             },
-            //         },
-            //     ],
-            // }
+            {
+                test: /\.(png|jpe?g|gif|svg|eot|ttf|woff|woff2)$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name(file) {
+                                if (process.env.NODE_ENV === 'development') {
+                                    return '[name].[ext]';
+                                }
+                                return '[name][hash].[ext]';
+                            },
+                            outputPath: _path_.distImagesPath,
+                            publicPath: _path_.srcImagesPath
+                        }
+                    },
+                ]
+            }
         ]
     },
-    resolve: {
-        alias,
-        plugins: [
-            // Place for app' plugins
-        ]
-    },
+    resolve: { alias },
     plugins: [
         new HtmlWebpackPlugin({
+            // favicon: _path_.publicFaviconPath,
+            // filename: 'index.html',
+            // path: _path_.distBasePath,
             template: _path_.publicHTMLPath,
-            filename: 'index.html',
-            path: _path_.distBasePath,
-            favicon: _path_.publicFaviconPath
+            inject: true,
+            minify: {
+                removeComments: true,
+                collapseWhitespace: true,
+                removeRedundantAttributes: true,
+                useShortDoctype: true,
+                removeEmptyAttributes: true,
+                removeStyleLinkTypeAttributes: true,
+                keepClosingSlash: true,
+                minifyJS: true,
+                minifyCSS: true,
+                minifyURLs: true,
+            }
         }),
+        new InterpolateHtmlPlugin(HtmlWebpackPlugin,{ 'PUBLIC_URL': 'assets' }),
+        // new InterpolateHtmlPlugin({
+        //     'PUBLIC_URL': 'assets'
+        // }),
+        // new ManifestPlugin({
+        //     fileName: 'asset-manifest.json',
+        //     publicPath: publicPath,
+        // })
         new webpack.NamedModulesPlugin(),
         new webpack.HotModuleReplacementPlugin()
-    ],
-    devtool: "source-map",
-    devServer: devServerConfig
+    ]
 };
 
 
