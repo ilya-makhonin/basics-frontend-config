@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const InterpolateHtmlPlugin = require('interpolate-html-plugin');
+const ManifestPlugin = require('webpack-manifest-plugin');
 const devServerConfig = require('./devServer.config');
 const babelConfig = require('./babel.config')();
 const alias = require('./alias');
@@ -132,13 +133,10 @@ const webPackConfigure = {
             }
         }),
         new InterpolateHtmlPlugin(HtmlWebpackPlugin,{ 'PUBLIC_URL': 'assets' }),
-        // new InterpolateHtmlPlugin({
-        //     'PUBLIC_URL': 'assets'
-        // }),
-        // new ManifestPlugin({
-        //     fileName: 'asset-manifest.json',
-        //     publicPath: publicPath,
-        // })
+        new ManifestPlugin({
+            fileName: 'asset-manifest.json',
+            publicPath: _path_.publicBasePath,
+        }),
         new webpack.NamedModulesPlugin(),
         new webpack.HotModuleReplacementPlugin()
     ]
