@@ -16,11 +16,20 @@ const mainAppFilePath = path.join(srcBasePath, 'App.js');
 
 // The paths to main folders of a React.js application
 const appCataloguePath = path.join(srcBasePath, 'app');
+
+// And other: video, audio, etc
 const srcImagesPath = path.join(appCataloguePath, 'assets', 'images');
 const srcStylesPath = path.join(appCataloguePath, 'assets', 'styles');
 const srcCSSPath = path.join(srcStylesPath, 'css');
 const srcSCSSPath = path.join(srcStylesPath, 'scss');
 const srcLESSPath = path.join(srcStylesPath, 'less');
+const srcComponentsPath = path.join(appCataloguePath, 'components');
+const srcContainersPath = path.join(appCataloguePath, 'containers');
+
+// The paths for Redux components
+const storePath = path.join(appCataloguePath, 'store');
+const reducersPath = path.join(appCataloguePath, 'reducers');
+const actionsPath = path.join(appCataloguePath, 'actions');
 
 // The paths to dist main folders
 const distImagesPath = path.resolve(distBasePath, 'images');
@@ -49,6 +58,11 @@ module.exports = {
     srcCSSPath,
     srcSCSSPath,
     srcLESSPath,
+    srcComponentsPath,
+    srcContainersPath,
+    storePath,
+    reducersPath,
+    actionsPath,
     distBasePath,
     distImagesPath
 };
