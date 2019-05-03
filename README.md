@@ -19,3 +19,11 @@ Everyone Frontend developer have to write a own config for WebPack :)
 ---
 
 **The project is at start development**. Beta version may be ready for summer
+
+#### List of files for modifying by a user:
+- configuration\__path.js - full list of paths of the Project (**IMPORTANT!** In this file indicated main paths of the Project)
+- configuration\alias.js - a list of paths at an application (name => path)
+_In developing..._
+
+#### List of files are the Project
+_Development finish structure..._
