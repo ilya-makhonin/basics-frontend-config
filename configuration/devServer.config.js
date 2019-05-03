@@ -1,11 +1,10 @@
-const path = require('path');
-
+const _path_ = require('./__path');
 
 module.exports = {
-    contentBase: path.resolve(__dirname, 'dist'),
+    contentBase: _path_.distBasePath,
     compress: true,
-    host: '0.0.0.0',
-    port: 9000,
+    host: 'localhost',
+    port: process.env.PORT || 8080,
     historyApiFallback: true,
     inline: true,
     hot: true
