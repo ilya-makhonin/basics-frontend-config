@@ -35,9 +35,6 @@ const storePath = path.resolve(appCataloguePath, 'store');
 const reducersPath = path.resolve(appCataloguePath, 'reducers');
 const actionsPath = path.resolve(appCataloguePath, 'actions');
 
-// The paths to dist main folders
-const distImagesPath = 'assets';
-
 
 // ***************** Functions for getting path to some directory *****************
 
@@ -68,6 +65,5 @@ module.exports = {
     storePath,
     reducersPath,
     actionsPath,
-    distBasePath,
-    distImagesPath
+    distBasePath
 };
