@@ -1,7 +1,4 @@
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-
-
-const configForWorkingWithOutputStyles = function (mode, type) {
+const configForWorkingWithOutputStyles = function (mode='development', type='loader') {
     const forDevelopmentStyleLoader = {
         loader: 'style-loader',
         options: {
@@ -11,14 +8,36 @@ const configForWorkingWithOutputStyles = function (mode, type) {
         }
     };
 
-    const forProductionStyleLoader = {
-        hmr: false
-    };
+    // If user loader this function returned full rule for use property
+    if (mode === 'development' && type === 'loader') return forDevelopmentStyleLoader;
+    if (mode === 'production' && type === 'loader') {
+        return {
+            ...forDevelopmentStyleLoader,
+            options: {
+                ...forDevelopmentStyleLoader.options,
+                hmr: false
+            }
+        };
+    }
 
-    const pluginConfigDevelopment = {
-        loader: MiniCssExtractPlugin.loader,
-        options: {
-            hmr: true,
-        },
+    // If used mini-css-extract-plugin this function returned only
+    // options for use property and config for new plugin instance
+    if (mode === 'development' && type === 'plugin') {
+        return {
+            options: { hmr: true, reloadAll: true },
+            forPlugin: {
+                filename: '[name].css',
+                chunkFilename: '[id].css',
+            }
+        };
+    }
+    if (mode === 'production' && type === 'plugin') {
+        return {
+            options: { hmr: false, publicPath: 'assets/styles' },
+            forPlugin: {
+                filename: '[name].css',
+                chunkFilename: '[id].css',
+            }
+        };
     }
 };
