@@ -2,12 +2,19 @@
 
 - [x] Step One: Create a WebPack and Babel config for compiling a React app (basics model)
 - [x] Step Two: Create ESLint config (abstract)
-- [ ] Create rules for CSS pre-processors (SASS, **SCSS**, LESS)
-- [ ] Create rules for working with media-files (**pictures**, audio, video, etc)
-- [ ] Setting dev-server for comfortable development (with hot-loading)
+- [x] Create rules for CSS pre-processors (SASS, **SCSS**, LESS)
+- [x] Create rules for working with media-files (**pictures**, audio, video, etc)
+- [x] Setting dev-server for comfortable development (with hot-loading)
+- [ ] Add new configs for loaders and plugins into WebPack configs
+- [ ] Update ES-Lint rules
+- [ ] Fix a problem with favicon.ico and manifest.json
+- [ ] Testing both configurations for WebPack (for development and production)
+- [ ] Clear extra code into configuration\some_files (Exactly in __path.js, light and build configs)
+- [ ] Create a final format for rules of development (light) and production (build) configurations - output's view
+- [ ] Test the Project
 
 ## Questionable
-- [ ] _Create (separate) two configs: first for development and second for build a project_
+- [x] _Create (separate) two configs: first for development and second for build a project_
 - [ ] _Create rules for Prettier_
 
 ---
