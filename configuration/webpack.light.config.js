@@ -1,12 +1,15 @@
-const path = require('path');
 const webpack = require('webpack');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const InterpolateHtmlPlugin = require('interpolate-html-plugin');
 
 const devServerConfig = require('./devServer.config');
-const babelConfig = require('./babel.config')();
 const HWPConfig = require('./settingsForModeType/HtmlWebpackPluginConfig');
+const babelConfig = require('./babel.config')();
+const cssLoader = require('./settingsForModeType/cssLoader')('development');
+const lessLoader = require('./settingsForModeType/lessLoader');
+const scssLoader = require('./settingsForModeType/scssLoader');
+const styleOutput = require('./settingsForModeType/stylesOutput')('development');
 
 const alias = require('./alias');
 const _path_ = require('./__path');
@@ -15,9 +18,14 @@ const _path_ = require('./__path');
 const webPackConfigure = {
     devtool: "source-map",
     devServer: devServerConfig,
-    entry: _path_.mainEntryPointPath,
+    entry: {
+        app: [
+            'react-hot-loader/patch',
+            _path_.mainEntryPointPath,
+        ]
+    },
     output: {
-        filename: '[name].js',
+        filename: 'main.build.js',
         path: _path_.distBasePath
     },
     module: {
@@ -39,40 +47,24 @@ const webPackConfigure = {
             {
                 test: /\.css$/,
                 exclude: /(node_modules|bower_components)/,
-                use: [ 'style-loader',  'css-loader' ],
+                use: [ styleOutput, cssLoader ],
                 include: [ _path_.srcCSSPath ]
             },
             {
-                test: /\.scss$/,
+                test: /\.(sa|sc)ss$/,
                 exclude: /(node_modules|bower_components)/,
-                use: [ 'style-loader', 'css-loader', 'sass-loader' ],
+                use: [ styleOutput, cssLoader, scssLoader('development') ],
                 include: [ _path_.srcSCSSPath ]
             },
             {
                 test: /\.less$/,
                 exclude: /(node_modules|bower_components)/,
-                use: [
-                    'style-loader',
-                    'css-loader',
-                    {
-                        loader: 'less-loader',
-                        options: {
-                            sourceMap: true
-                        }
-                    }
-                ],
+                use: [ styleOutput, cssLoader, lessLoader ],
                 include: [ _path_.srcLESSPath ]
             },
             {
                 test: /\.(png|jpe?g|gif|svg|eot|ttf|woff|woff2)$/,
-                use: [
-                    {
-                        loader: 'url-loader',
-                        options: {
-                            limit: 10000
-                        }
-                    }
-                ]
+                use: [ { loader: 'url-loader', options: { limit: 10000 } } ]
             }
         ]
     },
