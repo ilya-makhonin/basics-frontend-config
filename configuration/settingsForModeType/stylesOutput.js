@@ -1,4 +1,4 @@
-const configForWorkingWithOutputStyles = function (mode='development', type='loader') {
+const configForWorkingWithOutputStyles = function (mode, type='loader') {
     const forDevelopmentStyleLoader = {
         loader: 'style-loader',
         options: {
@@ -33,11 +33,14 @@ const configForWorkingWithOutputStyles = function (mode='development', type='loa
     }
     if (mode === 'production' && type === 'plugin') {
         return {
-            options: { hmr: false, publicPath: 'assets/styles' },
+            options: { hmr: false, /*publicPath: 'assets'*/ },
             forPlugin: {
-                filename: '[name].css',
+                filename: '[name].[hash].css',
                 chunkFilename: '[id].css',
             }
         };
     }
 };
+
+
+module.exports = configForWorkingWithOutputStyles;
