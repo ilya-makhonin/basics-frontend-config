@@ -62,6 +62,7 @@ const webPackConfigure = {
                 use: [ styleOutput, cssLoader, lessLoader ],
                 include: [ _path_.srcLESSPath ]
             },
+            { loader: 'html-loader', options: { attrs: [] } },
             {
                 test: /\.(png|jpe?g|gif|svg|eot|ttf|woff|woff2)$/,
                 use: [ { loader: 'url-loader', options: { limit: 10000 } } ]
