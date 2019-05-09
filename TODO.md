@@ -6,10 +6,10 @@
 - [x] Create rules for working with media-files (**pictures**, audio, video, etc)
 - [x] Setting dev-server for comfortable development (with hot-loading)
 - [x] Add new configs for loaders and plugins into WebPack configs
-- [ ] Update ES-Lint rules
+- [x] Update ES-Lint rules
 - [ ] Fix a problem with favicon.ico and manifest.json
-- [ ] Testing both configurations for WebPack (for development and production)
-- [ ] Clear extra code into configuration\some_files (Exactly in __path.js, light and build configs)
+- [x] Testing both configurations for WebPack (for development and production)
+- [x] Clear extra code into configuration\some_files (Exactly in __path.js, light and build configs)
 - [ ] Create a final format for rules of development (light) and production (build) configurations - output's view
 - [ ] Test the Project
 
