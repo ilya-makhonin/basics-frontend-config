@@ -50,20 +50,21 @@ const buildConfig = {
     devtool: "hidden-source-map",
     entry: _path_.mainEntryPointPath,
     output: {
-        filename: '[name].build.js',
-        path: _path_.distBasePath
+        path: _path_.distBasePath,
+        filename: 'assets/js/[name].[contenthash:8].build.js',
+        chunkFilename: 'assets/js/[name].[contenthash:8].chunk.js'
     },
     module: {
         rules: [
             {
-                test: /\.js$/,
+                test: /\.(js|jsx)$/,
                 exclude: /(node_modules|bower_components)/,
                 enforce: 'pre',
                 use: 'eslint-loader',
                 include: [ _path_.srcBasePath ]
             },
             {
-                test: /\.js$/,
+                test: /\.(js|jsx)$/,
                 exclude: /(node_modules|bower_components)/,
                 loader: 'babel-loader',
                 options: babelConfig,
@@ -89,6 +90,7 @@ const buildConfig = {
             },
             {
                 test: /\.(png|jpe?g|gif|svg|eot|ttf|woff|woff2)$/,
+                exclude: [/\.(js|jsx)$/, /\.html$/, /\.json$/],
                 use: [
                     {
                         loader: 'file-loader',
