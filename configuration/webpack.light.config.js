@@ -25,20 +25,21 @@ const webPackConfigure = {
         ]
     },
     output: {
-        filename: 'main.build.js',
-        path: _path_.distBasePath
+        path: _path_.distBasePath,
+        filename: '[name].build.js',
+        chunkFilename: '[name].chunk.js'
     },
     module: {
         rules: [
             {
-                test: /\.js$/,
+                test: /\.(js|jsx)$/,
                 exclude: /(node_modules|bower_components)/,
                 enforce: 'pre',
                 use: 'eslint-loader',
                 include: [ _path_.srcBasePath ]
             },
             {
-                test: /\.js$/,
+                test: /\.(js|jsx)$/,
                 exclude: /(node_modules|bower_components)/,
                 loader: 'babel-loader',
                 options: babelConfig,
