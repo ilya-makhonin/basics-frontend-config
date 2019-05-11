@@ -7,5 +7,6 @@ module.exports = {
     port: process.env.PORT || 8080,
     historyApiFallback: true,
     inline: true,
+    open: true,
     hot: true
 };
