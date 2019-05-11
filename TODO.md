@@ -7,7 +7,7 @@
 - [x] Setting dev-server for comfortable development (with hot-loading)
 - [x] Add new configs for loaders and plugins into WebPack configs
 - [x] Update ES-Lint rules
-- [ ] Fix a problem with favicon.ico and manifest.json
+- [x] Fix a problem with favicon.ico and manifest.json
 - [x] Testing both configurations for WebPack (for development and production)
 - [x] Clear extra code into configuration\some_files (Exactly in __path.js, light and build configs)
 - [ ] Create a final format for rules of development (light) and production (build) configurations - output's view
