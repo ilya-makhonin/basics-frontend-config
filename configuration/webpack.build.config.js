@@ -1,3 +1,4 @@
+const path = require('path');
 const webpack = require('webpack');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -6,6 +7,7 @@ const ManifestPlugin = require('webpack-manifest-plugin');
 const TerserJSPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const HWPConfig = require('./settingsForModeType/HtmlWebpackPluginConfig');
 const babelConfig = require('./babel.config')();
@@ -51,8 +53,8 @@ const buildConfig = {
     entry: _path_.mainEntryPointPath,
     output: {
         path: _path_.distBasePath,
-        filename: 'assets/js/[name].[contenthash:8].build.js',
-        chunkFilename: 'assets/js/[name].[contenthash:8].chunk.js'
+        filename: 'assets/js/[name].[hash].build.js',
+        chunkFilename: 'assets/js/[name].[hash].chunk.js'
     },
     module: {
         rules: [
@@ -110,6 +112,10 @@ const buildConfig = {
         new HtmlWebpackPlugin(HWPConfig('production')),
         new InterpolateHtmlPlugin({ 'SOURCE_URL': 'assets' }),
         new ManifestPlugin({ fileName: 'assets-manifest.json' }),
+        new CopyWebpackPlugin([
+            { from: _path_.publicFaviconPath, to: path.resolve(_path_.distBasePath, 'assets') },
+            { from: _path_.publicManifestPath, to: path.resolve(_path_.distBasePath, 'assets') },
+        ]),
         new webpack.NamedModulesPlugin(),
         new webpack.HotModuleReplacementPlugin()
     ]
