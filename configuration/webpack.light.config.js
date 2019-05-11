@@ -2,6 +2,7 @@ const webpack = require('webpack');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const InterpolateHtmlPlugin = require('interpolate-html-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const devServerConfig = require('./devServer.config');
 const HWPConfig = require('./settingsForModeType/HtmlWebpackPluginConfig');
@@ -26,8 +27,7 @@ const webPackConfigure = {
     },
     output: {
         path: _path_.distBasePath,
-        filename: '[name].build.js',
-        chunkFilename: '[name].chunk.js'
+        filename: '[name].build.js'
     },
     module: {
         rules: [
@@ -72,7 +72,11 @@ const webPackConfigure = {
     resolve: { alias },
     plugins: [
         new HtmlWebpackPlugin( HWPConfig('development') ),
-        new InterpolateHtmlPlugin({ 'SOURCE_URL': 'assets' }),
+        new InterpolateHtmlPlugin({ 'SOURCE_URL': '.' }),
+        new CopyWebpackPlugin([
+            { from: _path_.publicFaviconPath, to: _path_.distBasePath },
+            { from: _path_.publicManifestPath, to: _path_.distBasePath },
+        ]),
         new webpack.NamedModulesPlugin(),
         new webpack.HotModuleReplacementPlugin()
     ]
