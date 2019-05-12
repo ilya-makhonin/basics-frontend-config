@@ -16,6 +16,8 @@
 ## Questionable
 - [x] _Create (separate) two configs: first for development and second for build a project_
 - [ ] _Create rules for Prettier_
+- [x] _Add testing with Jest_
+- [ ] _If use Jest then create rules (a config file) for testing_
 
 ---
 
