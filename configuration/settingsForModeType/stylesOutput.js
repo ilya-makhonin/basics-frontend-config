@@ -33,7 +33,7 @@ const configForWorkingWithOutputStyles = function (mode, type='loader') {
     }
     if (mode === 'production' && type === 'plugin') {
         return {
-            options: { hmr: false, /*publicPath: 'assets'*/ },
+            options: { hmr: false },
             forPlugin: {
                 filename: 'assets/css/[name].[hash].css',
                 chunkFilename: 'assets/css/[id].css',
