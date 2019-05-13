@@ -4,7 +4,7 @@
   "description": "Basics config for creating React.js application",
   "main": "index.js",
   "scripts": {
-    "test": "jest --config configuration/jest.config.js",
+    "test": "jest --colors --watchAll --config=configuration/jest.config.js",
     "start": "webpack-dev-server --colors --progress",
     "light": "webpack --mode development",
     "build": "webpack --mode production"
@@ -16,14 +16,10 @@
   "keywords": [
     "React.js",
     "React",
-    "WebPack",
-    "config",
+    "WebPack config",
     "WebPack",
     "Babel",
-    "and",
-    "WebPack",
-    "React",
-    "template"
+    "React template"
   ],
   "author": "Ilya (Elias)",
   "license": "GPL-3.0",
