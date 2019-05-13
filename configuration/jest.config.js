@@ -1,3 +1,4 @@
+const _path_ = require('./__path');
 // For a detailed explanation regarding each configuration property, visit:
 // https://jestjs.io/docs/en/configuration.html
 
@@ -6,7 +7,7 @@ module.exports = {
   // automock: false,
 
   // Stop running tests after `n` failures
-  // bail: 0,
+  // bail: 0
 
   // Respect "browser" field in package.json when resolving modules
   // browser: false,
@@ -109,12 +110,10 @@ module.exports = {
   // restoreMocks: false,
 
   // The root directory that Jest should scan for tests and modules within
-  // rootDir: null,
+  rootDir: _path_.root,
 
   // A list of paths to directories that Jest should use to search for files in
-  // roots: [
-  //   "<rootDir>"
-  // ],
+  // roots: [ _path_.srcBasePath ],
 
   // Allows you to use a custom runner instead of Jest's default test runner
   // runner: "jest-runner",
@@ -138,15 +137,10 @@ module.exports = {
   // testLocationInResults: false,
 
   // The glob patterns Jest uses to detect test files
-  // testMatch: [
-  //   "**/__tests__/**/*.[jt]s?(x)",
-  //   "**/?(*.)+(spec|test).[tj]s?(x)"
-  // ],
+  testMatch: [ "**/src/**/*.[jt]s?(x)", "**/?(*.)+(spec|test).[tj]s?(x)" ],
 
   // An array of regexp pattern strings that are matched against all test paths, matched tests are skipped
-  // testPathIgnorePatterns: [
-  //   "\\\\node_modules\\\\"
-  // ],
+  testPathIgnorePatterns: [ "\\\\node_modules\\\\" ],
 
   // The regexp pattern or array of patterns that Jest uses to detect test files
   // testRegex: [],
