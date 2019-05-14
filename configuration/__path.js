@@ -8,10 +8,8 @@ const srcBasePath = path.resolve(root, 'src');
 const publicBasePath = path.resolve(root, 'public');
 const distBasePath = path.resolve(root, 'dist');
 
-// The paths to public files: index.html, favicon.ico, manifest.json
+// The path to public index.html file
 const publicHTMLPath = path.resolve(publicBasePath, 'index.html');
-const publicFaviconPath = path.resolve(publicBasePath, 'favicon.ico');
-const publicManifestPath = path.resolve(publicBasePath, 'manifest.json');
 
 // The paths to main files of a React.js application
 const mainEntryPointPath = path.resolve(srcBasePath, 'index.js');
@@ -40,8 +38,6 @@ module.exports = {
     srcBasePath,
     publicBasePath,
     publicHTMLPath,
-    publicFaviconPath,
-    publicManifestPath,
     mainEntryPointPath,
     mainAppFilePath,
     srcImagesPath,
@@ -51,5 +47,6 @@ module.exports = {
     srcLESSPath,
     distBasePath,
     srcGetPath,
-    distGetPath
+    distGetPath,
+    publicGetPath
 };
