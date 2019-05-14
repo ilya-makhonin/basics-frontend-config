@@ -6,7 +6,6 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const devServerConfig = require('./devServer.config');
 const HWPConfig = require('./settingsForModeType/HtmlWebpackPluginConfig');
-const babelConfig = require('./babel.config')();
 const cssLoader = require('./settingsForModeType/cssLoader')('development');
 const lessLoader = require('./settingsForModeType/lessLoader');
 const scssLoader = require('./settingsForModeType/scssLoader');
@@ -42,7 +41,6 @@ const webPackConfigure = {
                 test: /\.(js|jsx)$/,
                 exclude: /(node_modules|bower_components)/,
                 loader: 'babel-loader',
-                options: babelConfig,
                 include: [ _path_.srcBasePath ]
             },
             {
@@ -74,8 +72,8 @@ const webPackConfigure = {
         new HtmlWebpackPlugin( HWPConfig('development') ),
         new InterpolateHtmlPlugin({ 'SOURCE_URL': '.' }),
         new CopyWebpackPlugin([
-            { from: _path_.publicFaviconPath, to: _path_.distBasePath },
-            { from: _path_.publicManifestPath, to: _path_.distBasePath },
+            { from: _path_.publicGetPath('favicon.ico'), to: _path_.distBasePath },
+            { from: _path_.publicGetPath('manifest.json'), to: _path_.distBasePath },
         ]),
         new webpack.NamedModulesPlugin(),
         new webpack.HotModuleReplacementPlugin()

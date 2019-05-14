@@ -1,4 +1,3 @@
-const path = require('path');
 const webpack = require('webpack');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -10,7 +9,6 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const HWPConfig = require('./settingsForModeType/HtmlWebpackPluginConfig');
-const babelConfig = require('./babel.config')();
 const cssLoader = require('./settingsForModeType/cssLoader')('production');
 const lessLoader = require('./settingsForModeType/lessLoader');
 const scssLoader = require('./settingsForModeType/scssLoader');
@@ -69,7 +67,6 @@ const buildConfig = {
                 test: /\.(js|jsx)$/,
                 exclude: /(node_modules|bower_components)/,
                 loader: 'babel-loader',
-                options: babelConfig,
                 include: [ _path_.srcBasePath ]
             },
             {
@@ -113,8 +110,8 @@ const buildConfig = {
         new InterpolateHtmlPlugin({ 'SOURCE_URL': 'assets' }),
         new ManifestPlugin({ fileName: 'assets-manifest.json' }),
         new CopyWebpackPlugin([
-            { from: _path_.publicFaviconPath, to: path.resolve(_path_.distBasePath, 'assets') },
-            { from: _path_.publicManifestPath, to: path.resolve(_path_.distBasePath, 'assets') },
+            { from: _path_.publicGetPath('favicon.ico'), to: _path_.distGetPath('assets') },
+            { from: _path_.publicGetPath('manifest.json'), to: _path_.distGetPath('assets') },
         ]),
         new webpack.NamedModulesPlugin(),
         new webpack.HotModuleReplacementPlugin()
