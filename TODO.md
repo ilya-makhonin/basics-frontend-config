@@ -10,14 +10,14 @@
 - [x] Fix a problem with favicon.ico and manifest.json
 - [x] Testing both configurations for WebPack (for development and production)
 - [x] Clear extra code into configuration\some_files (Exactly in __path.js, light and build configs)
-- [ ] Create a final format for rules of development (light) and production (build) configurations - output's view
+- [x] Create a final format for rules of development (light) and production (build) configurations - output's view
 - [ ] Test the Project
 
 ## Questionable
 - [x] _Create (separate) two configs: first for development and second for build a project_
 - [ ] _Create rules for Prettier_
 - [x] _Add testing with Jest_
-- [ ] _If use Jest then create rules (a config file) for testing_
+- [x] _If use Jest then create rules (a config file) for testing_
 
 ---
 
