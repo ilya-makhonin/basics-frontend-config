@@ -12,6 +12,7 @@
 - [x] Clear extra code into configuration\some_files (Exactly in __path.js, light and build configs)
 - [x] Create a final format for rules of development (light) and production (build) configurations - output's view
 - [x] Test the Project
+- [ ] Use the Template for a real Project
 
 ## Questionable
 - [x] _Create (separate) two configs: first for development and second for build a project_
