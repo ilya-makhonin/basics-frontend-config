@@ -23,7 +23,31 @@ Everyone Frontend developer have to write a own config for WebPack :)
 #### List of files for modifying by a user:
 - configuration\__path.js - full list of paths of the Project (**IMPORTANT!** In this file indicated main paths of the Project)
 - configuration\alias.js - a list of paths at an application (name => path)
-_In developing..._
+- configuration\jest.config.js - config file for Jest (test a project)
+- .eslintrs - the file for configuration ESLint
+- src\app.test.js - file for user test (Jest)
 
-#### List of files are the Project
-_Development finish structure..._
+#### List of folders are the Project
+It is a basics of a project structure. (_At this time the Project does not 
+have loaders (or plugins) for working with audio and video files_)
+
++ public - folder with index.html, favicon.ico and manifest.json
++ src - folder for an app code
+    + app - sub-folder for code of an app (components of an app)
+        + actions - actions creators for Redux.js
+        + assets - media and styles for an app
+            + audio
+            + images
+            + styles - folder for style files
+                + css
+                + scss
+                + less
+            + videos
+        + components - components of an React app (dump components)
+        + constants - an app constants (basically for redux actions creators)
+        + containers - React wrapper containers (smart components)
+        + reducer - redux reducers
+        + store - redux store
+        + utils - some file for helpful functions
++ configuration - folder for config of WebPack, Dev Server, Jest and other options
+    + settingsForModeType - sub-folder for config files of some WebPack' loaders and plugins
