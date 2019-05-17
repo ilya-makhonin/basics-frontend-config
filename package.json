@@ -5,13 +5,13 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --colors --watchAll --config=configuration/jest.config.js",
-    "start": "webpack-dev-server --colors --progress",
+    "start": "webpack-dev-server --colors",
     "light": "webpack --mode development",
     "build": "webpack --mode production"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ilya-makhonin/basics-frontend-config.git"
+    "url": "git+https://github.com/ilya-makhonin/basics-react-compile-config.git"
   },
   "keywords": [
     "React.js",
