@@ -9,7 +9,9 @@ const aliasList = {
     'images': _path_.srcImagesPath,
     'store': _path_.srcGetPath('app','store'),
     'reducer': _path_.srcGetPath('app','reducer'),
-    'actions': _path_.srcGetPath('app','actions')
+    'actions': _path_.srcGetPath('app','actions'),
+    'constants': _path_.srcGetPath('app', 'constants'),
+    'utils': _path_.srcGetPath('app', 'utils')
 };
 
 
