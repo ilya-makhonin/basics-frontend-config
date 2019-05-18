@@ -15,14 +15,6 @@ const publicHTMLPath = path.resolve(publicBasePath, 'index.html');
 const mainEntryPointPath = path.resolve(srcBasePath, 'index.js');
 const mainAppFilePath = path.resolve(srcBasePath, 'App.js');
 
-// And other: video, audio, etc
-const srcImagesPath = path.resolve(srcBasePath, 'app', 'assets', 'images');
-const srcStylesPath = path.resolve(srcBasePath, 'app', 'assets', 'styles');
-
-const srcCSSPath = path.resolve(srcStylesPath, 'css');
-const srcSCSSPath = path.resolve(srcStylesPath, 'scss');
-const srcLESSPath = path.resolve(srcStylesPath, 'less');
-
 
 // ***************** Functions for getting path to some directory *****************
 
@@ -40,11 +32,6 @@ module.exports = {
     publicHTMLPath,
     mainEntryPointPath,
     mainAppFilePath,
-    srcImagesPath,
-    srcStylesPath,
-    srcCSSPath,
-    srcSCSSPath,
-    srcLESSPath,
     distBasePath,
     srcGetPath,
     distGetPath,
