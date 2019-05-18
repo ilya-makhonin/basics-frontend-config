@@ -13,7 +13,6 @@
 - [x] Create a final format for rules of development (light) and production (build) configurations - output's view
 - [x] Test the Project
 - [x] Use the Template for a real Project
-- [ ] Add loader or plugins for working with audio and video files
 
 ## Questionable
 - [x] _Create (separate) two configs: first for development and second for build a project_

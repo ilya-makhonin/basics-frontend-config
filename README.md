@@ -35,14 +35,9 @@ have loaders (or plugins) for working with audio and video files_)
 + src - folder for an app code
     + app - sub-folder for code of an app (components of an app)
         + actions - actions creators for Redux.js
-        + assets - media and styles for an app
-            + audio
-            + images
-            + styles - folder for style files
-                + css
-                + scss
-                + less
-            + videos
+        + assets - media and styles of an app
+            + images - folder for images (png|jpg|jpeg|gif|svg|eot|ttf|woff|woff2)
+            + styles - folder for style files (css|sass|scss|less|css-in-js)
         + components - components of an React app (dump components)
         + constants - an app constants (basically for redux actions creators)
         + containers - React wrapper containers (smart components)
