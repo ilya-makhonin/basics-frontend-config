@@ -11,7 +11,8 @@ const aliasList = {
     'reducer': _path_.srcGetPath('app','reducer'),
     'actions': _path_.srcGetPath('app','actions'),
     'constants': _path_.srcGetPath('app', 'constants'),
-    'utils': _path_.srcGetPath('app', 'utils')
+    'utils': _path_.srcGetPath('app', 'utils'),
+    'react-dom': '@hot-loader/react-dom'
 };
 
 
