@@ -73,19 +73,19 @@ const buildConfig = {
                 test: /\.css$/,
                 exclude: /(node_modules|bower_components)/,
                 use: [ miniCssPlugin, cssLoader ],
-                include: [ _path_.srcCSSPath ]
+                include: [ _path_.srcBasePath ]
             },
             {
                 test: /\.(sa|sc)ss$/,
                 exclude: /(node_modules|bower_components)/,
                 use: [ miniCssPlugin, cssLoader, scssLoader('production') ],
-                include: [ _path_.srcSCSSPath ]
+                include: [ _path_.srcBasePath ]
             },
             {
                 test: /\.less$/,
                 exclude: /(node_modules|bower_components)/,
                 use: [ miniCssPlugin, cssLoader, lessLoader ],
-                include: [ _path_.srcLESSPath ]
+                include: [ _path_.srcBasePath ]
             },
             {
                 test: /\.(png|jpe?g|gif|svg|eot|ttf|woff|woff2)$/,
@@ -96,7 +96,7 @@ const buildConfig = {
                         options: {
                             name: '[name].[ext]',
                             outputPath: 'assets/media',
-                            publicPath: _path_.srcImagesPath
+                            publicPath: _path_.srcBasePath
                         }
                     },
                 ]
