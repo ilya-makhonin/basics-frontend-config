@@ -1,13 +1,13 @@
 # Basics frontend config
 
-This is basics config for creating React.js application (beta v.)
+This is basics config for creating React.js application (beta version)
 
 ---
 
 I will create a config for development React.js application. 
 It will be basics version of such config with the possibility of expanding the functionality. 
 This template will help developers faster begin to work at a React.js app and faster customize the work environment to their needs. 
-Everyone Frontend developer have to write a own config for WebPack :) 
+Everyone Frontend developer has to write a own config for WebPack :) 
 
 ---
 
