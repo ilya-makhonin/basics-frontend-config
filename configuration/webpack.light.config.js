@@ -10,7 +10,6 @@ const cssLoader = require('./settingsForModeType/cssLoader')('development');
 const lessLoader = require('./settingsForModeType/lessLoader');
 const scssLoader = require('./settingsForModeType/scssLoader');
 const styleOutput = require('./settingsForModeType/stylesOutput')('development');
-
 const alias = require('./alias');
 const _path_ = require('./__path');
 
@@ -47,19 +46,19 @@ const webPackConfigure = {
                 test: /\.css$/,
                 exclude: /(node_modules|bower_components)/,
                 use: [ styleOutput, cssLoader ],
-                include: [ _path_.srcCSSPath ]
+                include: [ _path_.srcBasePath ]
             },
             {
                 test: /\.(sa|sc)ss$/,
                 exclude: /(node_modules|bower_components)/,
                 use: [ styleOutput, cssLoader, scssLoader('development') ],
-                include: [ _path_.srcSCSSPath ]
+                include: [ _path_.srcBasePath ]
             },
             {
                 test: /\.less$/,
                 exclude: /(node_modules|bower_components)/,
                 use: [ styleOutput, cssLoader, lessLoader ],
-                include: [ _path_.srcLESSPath ]
+                include: [ _path_.srcBasePath ]
             },
             {
                 test: /\.(png|jpe?g|gif|svg|eot|ttf|woff|woff2)$/,
