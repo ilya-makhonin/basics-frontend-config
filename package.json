@@ -6,8 +6,9 @@
   "scripts": {
     "test": "jest --colors --watchAll --config=configuration/jest.config.js",
     "start": "webpack-dev-server --colors",
-    "light": "webpack --mode development",
-    "build": "webpack --mode production"
+    "light": "webpack --mode development --progress",
+    "build": "webpack --mode production --progress",
+    "watch": "webpack --mode development --watch --progress"
   },
   "repository": {
     "type": "git",
