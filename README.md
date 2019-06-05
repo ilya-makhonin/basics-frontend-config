@@ -20,6 +20,13 @@ Everyone Frontend developer has to write a own config for WebPack :)
 
 **The project is at start development**. Beta version may be ready for summer
 
+#### Commends for starting and building an application
++ test - Starting test of an application
++ start - Starting Webpack development server with 'light' config
++ light - 'light building of an application
++ build - Full building, minifying and compiling of an application
++ watch - Starting to build of an application with watch option and 'light' config
+
 #### List of files for modifying by a user:
 - configuration\__path.js - full list of paths of the Project (**IMPORTANT!** In this file indicated main paths of the Project)
 - configuration\alias.js - a list of paths at an application (name => path)
