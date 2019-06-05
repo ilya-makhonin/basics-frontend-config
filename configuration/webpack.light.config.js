@@ -39,7 +39,7 @@ const webPackConfigure = {
             {
                 test: /\.(js|jsx)$/,
                 exclude: /(node_modules|bower_components)/,
-                loader: 'babel-loader',
+                use: 'babel-loader',
                 include: [ _path_.srcBasePath ]
             },
             {
