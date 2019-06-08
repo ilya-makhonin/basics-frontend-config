@@ -105,6 +105,8 @@ const buildConfig = {
     },
     resolve: { alias },
     plugins: [
+        new webpack.NamedModulesPlugin(),
+        new webpack.HotModuleReplacementPlugin(),
         new MiniCssExtractPlugin(forPlugin),
         new HtmlWebpackPlugin(HWPConfig('production')),
         new InterpolateHtmlPlugin({ 'SOURCE_URL': 'assets' }),
@@ -112,9 +114,7 @@ const buildConfig = {
         new CopyWebpackPlugin([
             { from: _path_.publicGetPath('favicon.ico'), to: _path_.distGetPath('assets') },
             { from: _path_.publicGetPath('manifest.json'), to: _path_.distGetPath('assets') },
-        ]),
-        new webpack.NamedModulesPlugin(),
-        new webpack.HotModuleReplacementPlugin()
+        ])
     ]
 };
 

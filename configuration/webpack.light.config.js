@@ -68,14 +68,14 @@ const webPackConfigure = {
     },
     resolve: { alias },
     plugins: [
+        new webpack.NamedModulesPlugin(),
+        new webpack.HotModuleReplacementPlugin(),
         new HtmlWebpackPlugin( HWPConfig('development') ),
         new InterpolateHtmlPlugin({ 'SOURCE_URL': '.' }),
         new CopyWebpackPlugin([
             { from: _path_.publicGetPath('favicon.ico'), to: _path_.distBasePath },
             { from: _path_.publicGetPath('manifest.json'), to: _path_.distBasePath },
-        ]),
-        new webpack.NamedModulesPlugin(),
-        new webpack.HotModuleReplacementPlugin()
+        ])
     ]
 };
 
