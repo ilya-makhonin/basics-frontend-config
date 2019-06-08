@@ -1,6 +1,6 @@
 {
-  "name": "basics-frontend-config",
-  "version": "0.1.0",
+  "name": "basics-react-compile-config",
+  "version": "1.0.0",
   "description": "Basics config for creating React.js application",
   "main": "index.js",
   "scripts": {
@@ -22,7 +22,7 @@
     "Babel",
     "React template"
   ],
-  "author": "Ilya (Elias)",
+  "author": "Ilya (Elias) Makhonin",
   "license": "GPL-3.0",
   "bugs": {
     "url": "https://github.com/ilya-makhonin/basics-frontend-config/issues"
@@ -31,6 +31,7 @@
   "devDependencies": {
     "@babel/core": "^7.4.4",
     "@babel/plugin-proposal-class-properties": "^7.4.4",
+    "@babel/plugin-proposal-decorators": "^7.4.4",
     "@babel/preset-env": "^7.4.4",
     "@babel/preset-react": "^7.0.0",
     "@hot-loader/react-dom": "^16.8.6",
@@ -77,8 +78,9 @@
     ],
     "plugins": [
       "react-hot-loader/babel",
-      "react-html-attrs",
-      "@babel/plugin-proposal-class-properties"
+      [ "@babel/plugin-proposal-decorators", { "legacy": true } ],
+      [ "@babel/plugin-proposal-class-properties", { "loose": true } ],
+      "react-html-attrs"
     ]
   }
 }
