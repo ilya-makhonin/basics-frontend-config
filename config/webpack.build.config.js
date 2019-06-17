@@ -8,11 +8,11 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
-const HWPConfig = require('./settingsForModeType/HtmlWebpackPluginConfig');
-const cssLoader = require('./settingsForModeType/cssLoader')('production');
-const lessLoader = require('./settingsForModeType/lessLoader');
-const scssLoader = require('./settingsForModeType/scssLoader');
-const styleOutput = require('./settingsForModeType/stylesOutput');
+const HWPConfig = require('./settingsLoadersAndPlugins/HtmlWebpackPluginConfig');
+const cssLoader = require('./settingsLoadersAndPlugins/cssLoader')('production');
+const lessLoader = require('./settingsLoadersAndPlugins/lessLoader');
+const scssLoader = require('./settingsLoadersAndPlugins/scssLoader');
+const styleOutput = require('./settingsLoadersAndPlugins/stylesOutput');
 
 const { options, forPlugin } = styleOutput('production', 'plugin');
 const miniCssPlugin = { loader: MiniCssExtractPlugin.loader, options };

@@ -5,11 +5,11 @@ const InterpolateHtmlPlugin = require('interpolate-html-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const devServerConfig = require('./devServer.config');
-const HWPConfig = require('./settingsForModeType/HtmlWebpackPluginConfig');
-const cssLoader = require('./settingsForModeType/cssLoader')('development');
-const lessLoader = require('./settingsForModeType/lessLoader');
-const scssLoader = require('./settingsForModeType/scssLoader');
-const styleOutput = require('./settingsForModeType/stylesOutput')('development');
+const HWPConfig = require('./settingsLoadersAndPlugins/HtmlWebpackPluginConfig');
+const cssLoader = require('./settingsLoadersAndPlugins/cssLoader')('development');
+const lessLoader = require('./settingsLoadersAndPlugins/lessLoader');
+const scssLoader = require('./settingsLoadersAndPlugins/scssLoader');
+const styleOutput = require('./settingsLoadersAndPlugins/stylesOutput')('development');
 const alias = require('./alias');
 const _path_ = require('./__path');
 
