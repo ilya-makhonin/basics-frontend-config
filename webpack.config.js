@@ -1,5 +1,5 @@
-const lightConfig = require('./configuration/webpack.light.config');
-const buildConfig = require('./configuration/webpack.build.config');
+const lightConfig = require('./config/webpack.light.config');
+const buildConfig = require('./config/webpack.build.config');
 
 
 module.exports = function(un, args){
