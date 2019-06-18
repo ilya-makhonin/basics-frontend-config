@@ -1,6 +1,6 @@
 {
   "name": "basics-react-compile-config",
-  "version": "1.2.0",
+  "version": "1.5.0",
   "description": "Basics config for creating React.js application",
   "main": "index.js",
   "scripts": {
@@ -22,7 +22,10 @@
     "Babel",
     "React template"
   ],
-  "author": "Ilya (Elias) Makhonin",
+  "author": {
+    "name": "Ilya (Elias) Makhonin",
+    "email": "noizemkutane77@gmail.com"
+  },
   "license": "GPL-3.0",
   "bugs": {
     "url": "https://github.com/ilya-makhonin/basics-frontend-config/issues"
