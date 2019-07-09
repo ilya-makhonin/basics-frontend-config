@@ -4,26 +4,15 @@ const cssLoaderConfig = function (mode) {
         options: {
             url: true,
             import: true,
-            camelCase: true,
-            sourceMap: true,
+            localsConvention: 'camelCase',
+            sourceMap: true
         }
-    };
-
-    const buildAddOption = {
-        modules: true,
-        hashPrefix: 'hash',
-        sourceMap: false
     };
 
     if (mode === 'development') return baseConfig;
     if (mode === 'production') {
-        return {
-            ...baseConfig,
-            options: {
-                ...baseConfig.options,
-                ...buildAddOption
-            }
-        };
+        baseConfig.options.sourceMap = false;
+        return baseConfig;
     }
 };
 
