@@ -1,4 +1,4 @@
-const configForWorkingWithOutputStyles = function (mode, type='loader') {
+const styleOutput = function (mode, type='loader') {
     const forDevelopmentStyleLoader = {
         loader: 'style-loader',
         options: {
@@ -11,13 +11,8 @@ const configForWorkingWithOutputStyles = function (mode, type='loader') {
     // If user loader this function returned full rule for use property
     if (mode === 'development' && type === 'loader') return forDevelopmentStyleLoader;
     if (mode === 'production' && type === 'loader') {
-        return {
-            ...forDevelopmentStyleLoader,
-            options: {
-                ...forDevelopmentStyleLoader.options,
-                hmr: false
-            }
-        };
+        forDevelopmentStyleLoader.options.hmr = false;
+        return forDevelopmentStyleLoader;
     }
 
     // If used mini-css-extract-plugin this function returned only
@@ -26,8 +21,7 @@ const configForWorkingWithOutputStyles = function (mode, type='loader') {
         return {
             options: { hmr: true, reloadAll: true },
             forPlugin: {
-                filename: '[name].css',
-                chunkFilename: '[id].css',
+                filename: '[name].css'
             }
         };
     }
@@ -36,11 +30,11 @@ const configForWorkingWithOutputStyles = function (mode, type='loader') {
             options: { hmr: false },
             forPlugin: {
                 filename: 'assets/css/[name].[hash].css',
-                chunkFilename: 'assets/css/[id].css',
+                chunkFilename: 'assets/css/[id].css'
             }
         };
     }
 };
 
 
-module.exports = configForWorkingWithOutputStyles;
+module.exports = styleOutput;
