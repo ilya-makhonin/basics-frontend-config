@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const InterpolateHtmlPlugin = require('interpolate-html-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const devServerConfig = require('./devServer.config');
 const HWPConfig = require('./settingsLoadersAndPlugins/HtmlWebpackPluginConfig');
@@ -15,7 +16,7 @@ const _path_ = require('./__path');
 
 
 const webPackConfigure = {
-    devtool: "source-map",
+    devtool: 'source-map',
     devServer: devServerConfig,
     entry: {
         app: [
@@ -57,7 +58,7 @@ const webPackConfigure = {
             {
                 test: /\.less$/,
                 exclude: /(node_modules|bower_components)/,
-                use: [ styleOutput, cssLoader, lessLoader ],
+                use: [ styleOutput, cssLoader, lessLoader('development') ],
                 include: [ _path_.srcBasePath ]
             },
             {
@@ -70,6 +71,7 @@ const webPackConfigure = {
     plugins: [
         new webpack.NamedModulesPlugin(),
         new webpack.HotModuleReplacementPlugin(),
+        new CleanWebpackPlugin(),
         new HtmlWebpackPlugin( HWPConfig('development') ),
         new InterpolateHtmlPlugin({ 'SOURCE_URL': '.' }),
         new CopyWebpackPlugin([
