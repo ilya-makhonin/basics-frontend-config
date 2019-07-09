@@ -7,6 +7,7 @@ const TerserJSPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const HWPConfig = require('./settingsLoadersAndPlugins/HtmlWebpackPluginConfig');
 const cssLoader = require('./settingsLoadersAndPlugins/cssLoader')('production');
@@ -21,7 +22,7 @@ const alias = require('./alias');
 const _path_ = require('./__path');
 
 
-const buildConfig = {
+const buildConfig = mode = {
     optimization: {
         minimizer: [
             new TerserJSPlugin({
@@ -33,7 +34,6 @@ const buildConfig = {
                         comparisons: false,
                         inline: 2
                     },
-                    mangle: { safari10: true },
                     output: {
                         ecma: 5,
                         comments: false,
@@ -44,10 +44,12 @@ const buildConfig = {
             }),
             new OptimizeCSSAssetsPlugin({})
         ],
-        splitChunks: { chunks: 'all', name: false },
-        runtimeChunk: true
+        splitChunks: {
+            chunks: 'all'
+        }
     },
-    devtool: "hidden-source-map",
+    devtool: false,
+    performance: false,
     entry: _path_.mainEntryPointPath,
     output: {
         path: _path_.distBasePath,
@@ -84,7 +86,7 @@ const buildConfig = {
             {
                 test: /\.less$/,
                 exclude: /(node_modules|bower_components)/,
-                use: [ miniCssPlugin, cssLoader, lessLoader ],
+                use: [ miniCssPlugin, cssLoader, lessLoader('production') ],
                 include: [ _path_.srcBasePath ]
             },
             {
@@ -94,9 +96,8 @@ const buildConfig = {
                     {
                         loader: 'file-loader',
                         options: {
-                            name: '[name].[ext]',
-                            outputPath: 'assets/media',
-                            publicPath: _path_.srcBasePath
+                            name: '[hash].[ext]',
+                            outputPath: 'assets/media'
                         }
                     },
                 ]
@@ -106,14 +107,14 @@ const buildConfig = {
     resolve: { alias },
     plugins: [
         new webpack.NamedModulesPlugin(),
-        new webpack.HotModuleReplacementPlugin(),
+        new CleanWebpackPlugin(),
         new MiniCssExtractPlugin(forPlugin),
         new HtmlWebpackPlugin(HWPConfig('production')),
         new InterpolateHtmlPlugin({ 'SOURCE_URL': 'assets' }),
         new ManifestPlugin({ fileName: 'assets-manifest.json' }),
         new CopyWebpackPlugin([
             { from: _path_.publicGetPath('favicon.ico'), to: _path_.distGetPath('assets') },
-            { from: _path_.publicGetPath('manifest.json'), to: _path_.distGetPath('assets') },
+            { from: _path_.publicGetPath('manifest.json'), to: _path_.distBasePath },
         ])
     ]
 };
