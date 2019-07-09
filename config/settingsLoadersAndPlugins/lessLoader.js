@@ -1,17 +1,13 @@
-const basicsLess = {
-    loader: 'less-loader',
-    options: {
-        sourceMap: true,
-        // Some other options
-    }
+const basicsLess = function(mode) {
+    const config = {
+        loader: 'less-loader',
+        options: {
+            sourceMap: mode === 'development' ? true : false
+        }
+    };
+    
+    return config;
 };
-
-
-/**
- * const lessLoaderConfig = function(mode) {
- *     Your code for settings less-loader
- * }
- */
 
 
 module.exports = basicsLess;
