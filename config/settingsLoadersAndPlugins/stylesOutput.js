@@ -1,8 +1,8 @@
-const styleOutput = function (mode, type='loader') {
+const styleOutput = function (mode, type='loader', isHot=true) {
     const forDevelopmentStyleLoader = {
         loader: 'style-loader',
         options: {
-            hmr: true,
+            hmr: isHot,
             sourceMap: true,
             singleton: false
         }
@@ -19,7 +19,7 @@ const styleOutput = function (mode, type='loader') {
     // options for use property and config for new plugin instance
     if (mode === 'development' && type === 'plugin') {
         return {
-            options: { hmr: true, reloadAll: true },
+            options: { hmr: isHot, reloadAll: true },
             forPlugin: {
                 filename: '[name].css'
             }
