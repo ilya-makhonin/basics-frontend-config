@@ -1,4 +1,4 @@
-const scssLoaderConfig =  function (mode) {
+const scssLoaderConfig = function (mode) {
     const basicConfig = {
         loader: 'sass-loader',
         options: {
@@ -9,13 +9,8 @@ const scssLoaderConfig =  function (mode) {
 
     if (mode === 'development') return basicConfig;
     if (mode === 'production') {
-        return {
-            ...basicConfig,
-            options: {
-                ...basicConfig.options,
-                sourceMap: false
-            }
-        };
+        basicConfig.options.sourceMap = false;
+        return basicConfig;
     }
 };
 
