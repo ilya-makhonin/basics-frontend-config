@@ -104,7 +104,7 @@ const buildConfig = mode = {
             }
         ]
     },
-    resolve: { alias },
+    resolve: { alias: alias() },
     plugins: [
         new webpack.NamedModulesPlugin(),
         new CleanWebpackPlugin(),
