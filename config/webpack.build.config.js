@@ -11,6 +11,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const HWPConfig = require('./settingsLoadersAndPlugins/HtmlWebpackPluginConfig');
 const cssLoader = require('./settingsLoadersAndPlugins/cssLoader')('production');
+const postCssLoader = require('./settingsLoadersAndPlugins/postCSSLoader')('production');
 const lessLoader = require('./settingsLoadersAndPlugins/lessLoader');
 const scssLoader = require('./settingsLoadersAndPlugins/scssLoader');
 const styleOutput = require('./settingsLoadersAndPlugins/stylesOutput');
@@ -74,23 +75,33 @@ const buildConfig = mode = {
             {
                 test: /\.css$/,
                 exclude: /(node_modules|bower_components)/,
-                use: [ miniCssPlugin, cssLoader ],
+                use: [ miniCssPlugin, cssLoader, postCssLoader ],
                 include: [ _path_.srcBasePath ]
             },
             {
                 test: /\.(sa|sc)ss$/,
                 exclude: /(node_modules|bower_components)/,
-                use: [ miniCssPlugin, cssLoader, scssLoader('production') ],
+                use: [ miniCssPlugin, cssLoader, postCssLoader, scssLoader('production') ],
                 include: [ _path_.srcBasePath ]
             },
             {
                 test: /\.less$/,
                 exclude: /(node_modules|bower_components)/,
-                use: [ miniCssPlugin, cssLoader, lessLoader('production') ],
+                use: [ miniCssPlugin, cssLoader, postCssLoader, lessLoader('production') ],
                 include: [ _path_.srcBasePath ]
             },
             {
-                test: /\.(png|jpe?g|gif|svg|eot|ttf|woff|woff2)$/,
+                test: /\.svg$/,
+                use: [ 
+                    { loader: 'babel-loader' },
+                    {
+                        loader: 'react-svg-loader',
+                        options: { jsx: true }
+                    }
+                ]
+            },
+            {
+                test: /\.(png|jpe?g|gif|eot|ttf|woff|woff2)$/,
                 exclude: [/\.(js|jsx)$/, /\.html$/, /\.json$/],
                 use: [
                     {
@@ -104,7 +115,10 @@ const buildConfig = mode = {
             }
         ]
     },
-    resolve: { alias: alias() },
+    resolve: { 
+        alias: alias(),
+        extensions: ['.js', '.jsx']
+    },
     plugins: [
         new webpack.NamedModulesPlugin(),
         new CleanWebpackPlugin(),
