@@ -7,7 +7,8 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const devServerConfig = require('./devServer.config');
 const HWPConfig = require('./settingsLoadersAndPlugins/HtmlWebpackPluginConfig');
-const cssLoader = require('./settingsLoadersAndPlugins/cssLoader')('development');
+const cssLoader = require('./settingsLoadersAndPlugins/cssLoader');
+const postCssLoader = require('./settingsLoadersAndPlugins/postCSSLoader');
 const lessLoader = require('./settingsLoadersAndPlugins/lessLoader');
 const scssLoader = require('./settingsLoadersAndPlugins/scssLoader');
 const styleOutput = require('./settingsLoadersAndPlugins/stylesOutput');
@@ -21,6 +22,8 @@ const webPackConfigure = (isHot=true) => {
         ? { app: [ 'react-hot-loader/patch', _path_.mainEntryPointPath ] } 
         : _path_.mainEntryPointPath;
     const aliasCustome = alias(isHot);
+    const cssLoaderCustome = cssLoader('devvelopment');
+    const postCssLoaderCustome = postCssLoader('development');
     const scssLoaderCustome = scssLoader('development');
     const lessLoaderCustome = lessLoader('development');
     const configForHWP = HWPConfig('development');
@@ -51,28 +54,41 @@ const webPackConfigure = (isHot=true) => {
                 {
                     test: /\.css$/,
                     exclude: /(node_modules|bower_components)/,
-                    use: [ styleLoader, cssLoader ],
+                    use: [ styleLoader, cssLoaderCustome, postCssLoaderCustome ],
                     include: [ _path_.srcBasePath ]
                 },
                 {
                     test: /\.(sa|sc)ss$/,
                     exclude: /(node_modules|bower_components)/,
-                    use: [ styleLoader , cssLoader, scssLoaderCustome ],
+                    use: [ styleLoader , cssLoaderCustome, postCssLoaderCustome, scssLoaderCustome ],
                     include: [ _path_.srcBasePath ]
                 },
                 {
                     test: /\.less$/,
                     exclude: /(node_modules|bower_components)/,
-                    use: [ styleLoader, cssLoader, lessLoaderCustome ],
+                    use: [ styleLoader, cssLoaderCustome, postCssLoaderCustome, lessLoaderCustome ],
                     include: [ _path_.srcBasePath ]
                 },
                 {
-                    test: /\.(png|jpe?g|gif|svg|eot|ttf|woff|woff2)$/,
+                    test: /\.svg$/,
+                    use: [ 
+                        { loader: 'babel-loader' },
+                        {
+                            loader: 'react-svg-loader',
+                            options: { jsx: true }
+                        }
+                    ]
+                },
+                {
+                    test: /\.(png|jpe?g|gif|eot|ttf|woff|woff2)$/,
                     use: [ { loader: 'url-loader', options: { limit: 10000 } } ]
                 }
             ]
         },
-        resolve: { alias: aliasCustome },
+        resolve: { 
+            alias: aliasCustome,
+            extensions: ['.js', '.jsx']
+        },
         plugins: [
             new webpack.NamedModulesPlugin(),
             new webpack.HotModuleReplacementPlugin(),
