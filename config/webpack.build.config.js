@@ -23,7 +23,7 @@ const alias = require('./alias');
 const _path_ = require('./__path');
 
 
-const buildConfig = mode = {
+const buildConfig = {
     optimization: {
         minimizer: [
             new TerserJSPlugin({
