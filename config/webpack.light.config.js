@@ -22,7 +22,7 @@ const webPackConfigure = (isHot=true) => {
         ? { app: [ 'react-hot-loader/patch', _path_.mainEntryPointPath ] } 
         : _path_.mainEntryPointPath;
     const aliasCustome = alias(isHot);
-    const cssLoaderCustome = cssLoader('devvelopment');
+    const cssLoaderCustome = cssLoader('development');
     const postCssLoaderCustome = postCssLoader('development');
     const scssLoaderCustome = scssLoader('development');
     const lessLoaderCustome = lessLoader('development');
