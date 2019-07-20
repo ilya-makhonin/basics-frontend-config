@@ -15,7 +15,9 @@ const alias = (isHot=false) => {
         'utils': _path_.srcGetPath('app', 'utils'),
     }
 
-    isHot ? baseAlias['react-dom'] = '@hot-loader/react-dom' : undefined;
+    if (isHot) {
+        baseAlias['react-dom'] = '@hot-loader/react-dom'
+    }
 
     return baseAlias;
 };
